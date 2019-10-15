@@ -4,7 +4,6 @@ const Hydration = require('../src/Hydration');
 const UserRepo = require('../src/User-repo');
 const User = require('../src/User');
 
-// const User = require('../src/User');
 describe('Hydration', function() {
   let hydrationData;
   let hydration;

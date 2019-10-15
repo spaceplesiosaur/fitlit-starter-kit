@@ -1,10 +1,31 @@
-const data = require('../data/activity');
-const activityData = data.activityData;
-const scripts = require('./scripts');
+// const data = require('../data/activity');
+// const activityData = data.activityData;
+// const scripts = require('./scripts');
+//
+// const User = require('../src/User');
+//
 
-const User = require('../src/User');
+class Activity {
+  constructor(activityData) {
+    this.activityData = activityData
+  }
+  getMilesFromStepsByDate(id, date) {
+    
+  }
+  getActiveMinutesByDate() {
 
+  }
+  calculateActiveAverageForWeek() {
 
-// if (typeof module !== 'undefined') {
-//   module.exports = Activity;
-// }
+  }
+  getDaysGoalExceeded() {
+
+  }
+  getUserDataByID() {
+
+  }
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = Activity;
+}
