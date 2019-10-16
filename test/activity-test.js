@@ -6,8 +6,17 @@ const User = require('../src/User');
 const UserRepo = require('../src/User-repo');
 
 describe('Activity', function() {
+  let activityData;
+  let user1;
+  let user2;
+  let user3;
+  let user4;
+  let users;
+  let userRepo;
+  let activity;
+
   beforeEach(function() {
-    let activityData = [
+    activityData = [
       {
       "userID": 1,
       "date": "2019/06/15",
@@ -99,7 +108,7 @@ describe('Activity', function() {
       "minutesActive": 27,
       "flightsOfStairs": 14
     }];
-    let user1 = new User({id: 1,
+    user1 = new User({id: 1,
       name: "Alex Roth",
       address: "1234 Turing Street, Denver CO 80301-1697",
       email: "alex.roth1@hotmail.com",
@@ -107,7 +116,7 @@ describe('Activity', function() {
       dailyStepGoal: 10000,
       friends: [2, 3, 4]
     });
-    let user2 = new User({id: 2,
+    user2 = new User({id: 2,
       name: "Allie McCarthy",
       address: "1235 Turing Street, Denver CO 80301-1697",
       email: "allie.mcc1@hotmail.com",
@@ -115,7 +124,7 @@ describe('Activity', function() {
       dailyStepGoal: 9000,
       friends: [1, 3, 4]
     });
-    let user3 = new User({id: 3,
+    user3 = new User({id: 3,
       name: "Jerry Seinfield",
       address: "32 Baker Street, Denver CO 12345",
       email: "jseinfield@gmail.com",
@@ -123,7 +132,7 @@ describe('Activity', function() {
       dailyStepGoal: 20000,
       friends: [1, 2, 4]
     });
-    let user4 = new User({id: 4,
+    user4 = new User({id: 4,
       name: "Patrick the Starfish",
       address: "A rock in the ocean",
       email: "thebigpstar@pacificocean.net",
@@ -132,12 +141,20 @@ describe('Activity', function() {
       friends: [1, 2]
     });
 
-    let users = [user1, user2, user3, user4];
-    let userRepo = new UserRepo(users);
-    let activity = new Activity(activityData);
-  };
+    users = [user1, user2, user3, user4];
+    userRepo = new UserRepo(users);
+    activity = new Activity(activityData);
+  });
 
-  it('should return the miles a given user has walked on a given date' function() {
-    expect(activity.getMilesFromStepsByDate(1, '2019/06/15')).to.eql(2.9);
+  it('should take in data', function() {
+    expect(activity.activityData[0].userID).to.eql(1);
+    expect(activity.activityData[4].date).to.eql("2019/06/15");
+    expect(activity.activityData[3].numSteps).to.eql(3486);
+    expect(activity.activityData[8].minutesActive).to.eql(41);
+    expect(activity.activityData[10].flightsOfStairs).to.eql(24);
+  });
+
+  it('should return the miles a given user has walked on a given date', function() {
+    expect(activity.getMilesFromStepsByDate(1, '2019/06/15', userRepo.users[0])).to.eql(2.9);
   });
 })
