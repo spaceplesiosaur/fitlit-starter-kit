@@ -35,6 +35,16 @@ class Activity {
   getStairRecord(id) {
     return this.activityData.filter(data => id === data.userID).reduce((acc, elem) => (elem.flightsOfStairs > acc) ? elem.flightsOfStairs : acc, 0);
   }
+  getAllUserAverageForDay(date, userRepo, relevantData) {
+    let selectedDayData = userRepo.chooseDayDataForAllUsers(this.activityData, date);
+    return parseFloat((selectedDayData.reduce((acc, elem) => acc += elem[relevantData], 0)/selectedDayData.length).toFixed(1));
+  }
+  // findForrestGump() {
+  // will complete if time allows
+  // }
+
+// Frands
+
   getFriendsActivity(user, userRepo) {
     let data = this.activityData;
     let userDatalist = user.friends.map(function(friend){
