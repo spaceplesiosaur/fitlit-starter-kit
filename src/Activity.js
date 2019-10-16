@@ -13,11 +13,12 @@ class Activity {
     let userStepsByDate = this.activityData.find((data) => id === data.userID && date === data.date);
     return parseFloat(((userStepsByDate.numSteps * userRepo.strideLength)/5280).toFixed(1));
   }
-  getActiveMinutesByDate() {
-    
+  getActiveMinutesByDate(id, date) {
+    let userActivityByDate = this.activityData.find((data) => id === data.userID && date === data.date);
+    return userActivityByDate.minutesActive;
   }
-  calculateActiveAverageForWeek() {
-
+  calculateActiveAverageForWeek(id, date) {
+    let userActivityByWeek = this.activityData.filter
   }
   getDaysGoalExceeded() {
 

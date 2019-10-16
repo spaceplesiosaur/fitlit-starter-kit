@@ -155,6 +155,15 @@ describe('Activity', function() {
   });
 
   it('should return the miles a given user has walked on a given date', function() {
-    expect(activity.getMilesFromStepsByDate(1, '2019/06/15', userRepo.users[0])).to.eql(2.9);
+    expect(activity.getMilesFromStepsByDate(1, "2019/06/15", userRepo.users[0])).to.eql(2.9);
   });
+
+  it('should return the number of minutes a given user was active for on a given day', function() {
+    expect(activity.getActiveMinutesByDate(1, "2019/06/16")).to.eql(27)
+  });
+
+  it('should calculate average active minutes in a given week', function() {
+    expect(activity.calculateActiveAverageForWeek()).to.eql()
+  })
+
 })
