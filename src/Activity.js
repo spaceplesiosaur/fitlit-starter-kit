@@ -35,7 +35,7 @@ class Activity {
     return false
   }
   getDaysGoalExceeded(id, userRepo) {
-    return this.activityData.filter(data => )
+    return this.activityData.filter(data => id === data.userID && data.numSteps > userRepo.dailyStepGoal).map(data => data.date);
   }
   getUserDataByID() {
 
