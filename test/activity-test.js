@@ -41,7 +41,7 @@ describe('Activity', function() {
     {
       "userID": 4,
       "date": "2019/06/15",
-      "numSteps": 3486,
+      "numSteps": 3689,
       "minutesActive": 114,
       "flightsOfStairs": 32
     },
@@ -104,8 +104,57 @@ describe('Activity', function() {
     {
       "userID": 1,
       "date": "2019/06/16",
+      "numSteps": 5000,
+      "minutesActive": 12,
+      "flightsOfStairs": 14
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/17",
       "numSteps": 9303,
-      "minutesActive": 27,
+      "minutesActive": 45,
+      "flightsOfStairs": 14
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/18",
+      "numSteps": 3000,
+      "minutesActive": 62,
+      "flightsOfStairs": 14
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/19",
+      "numSteps": 9303,
+      "minutesActive": 4,
+      "flightsOfStairs": 14
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/20",
+      "numSteps": 9303,
+      "minutesActive": 7,
+      "flightsOfStairs": 14
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/21",
+      "numSteps": 12000,
+      "minutesActive": 13,
+      "flightsOfStairs": 14
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/22",
+      "numSteps": 9303,
+      "minutesActive": 21,
+      "flightsOfStairs": 14
+    },
+    {
+      "userID": 1,
+      "date": "2019/06/23",
+      "numSteps": 9303,
+      "minutesActive": 8,
       "flightsOfStairs": 14
     }];
     user1 = new User({id: 1,
@@ -113,7 +162,7 @@ describe('Activity', function() {
       address: "1234 Turing Street, Denver CO 80301-1697",
       email: "alex.roth1@hotmail.com",
       strideLength: 4.3,
-      dailyStepGoal: 10000,
+      dailyStepGoal: 5000,
       friends: [2, 3, 4]
     });
     user2 = new User({id: 2,
@@ -159,11 +208,18 @@ describe('Activity', function() {
   });
 
   it('should return the number of minutes a given user was active for on a given day', function() {
-    expect(activity.getActiveMinutesByDate(1, "2019/06/16")).to.eql(27)
+    expect(activity.getActiveMinutesByDate(1, "2019/06/16")).to.eql(12);
   });
 
   it('should calculate average active minutes in a given week', function() {
-    expect(activity.calculateActiveAverageForWeek()).to.eql()
-  })
+    expect(activity.calculateActiveAverageForWeek(1, "2019/06/21", userRepo)).to.eql(40.4);
+  });
 
+  it('should return true/false if the given user met their step goal on a given day', function() {
+    expect(activity.accomplishStepGoal(4, "2019/06/15", userRepo.users[3])).to.eql(false);
+  });
+
+  it('should return all days that a given user exceeded their step goal', function() {
+    expect(activity.getDaysGoalExceeded(1, userRepo.users[0])).to.eql();
+  });
 })
