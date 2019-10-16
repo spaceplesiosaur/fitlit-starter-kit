@@ -67,14 +67,14 @@ describe('Activity', function() {
       "flightsOfStairs": 5
     },
     {
-      "userID": 8,
+      "userID": 11,
       "date": "2019/06/15",
       "numSteps": 10333,
       "minutesActive": 114,
       "flightsOfStairs": 31
     },
     {
-      "userID": 9,
+      "userID": 11,
       "date": "2019/06/15",
       "numSteps": 6389,
       "minutesActive": 41,
@@ -113,35 +113,35 @@ describe('Activity', function() {
       "date": "2019/06/17",
       "numSteps": 9303,
       "minutesActive": 45,
-      "flightsOfStairs": 14
+      "flightsOfStairs": 9
     },
     {
       "userID": 1,
       "date": "2019/06/18",
       "numSteps": 3000,
       "minutesActive": 62,
-      "flightsOfStairs": 14
+      "flightsOfStairs": 23
     },
     {
       "userID": 1,
       "date": "2019/06/19",
       "numSteps": 9303,
       "minutesActive": 4,
-      "flightsOfStairs": 14
+      "flightsOfStairs": 2
     },
     {
       "userID": 1,
       "date": "2019/06/20",
       "numSteps": 9303,
       "minutesActive": 7,
-      "flightsOfStairs": 14
+      "flightsOfStairs": 4
     },
     {
       "userID": 1,
       "date": "2019/06/21",
       "numSteps": 12000,
       "minutesActive": 13,
-      "flightsOfStairs": 14
+      "flightsOfStairs": 26
     },
     {
       "userID": 1,
@@ -155,7 +155,7 @@ describe('Activity', function() {
       "date": "2019/06/23",
       "numSteps": 9303,
       "minutesActive": 8,
-      "flightsOfStairs": 14
+      "flightsOfStairs": 9
     }];
     user1 = new User({id: 1,
       name: "Alex Roth",
@@ -230,6 +230,6 @@ describe('Activity', function() {
   });
 
   it('should return the highest number of stairs climbed in a day for all time', function() {
-    expect(activity.)
+    expect(activity.getStairRecord(11)).to.eql(33);
   });
 })
