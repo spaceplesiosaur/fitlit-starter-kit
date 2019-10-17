@@ -290,9 +290,28 @@ describe('Activity', function() {
     });
     expect(activity.getAllUserAverageForDay("2019/06/23", userRepo, "minutesActive")).to.eql(12.5)
   });
+
+  it('should return steps for given user on given date', function() {
+    expect(activity.userDataForToday(2, "2019/06/15", userRepo, 'numSteps')).to.eql(4294);
+  });
+  it('should return minutes active for given user on given date', function() {
+    expect(activity.userDataForToday(1, "2019/06/18", userRepo, 'minutesActive')).to.eql(62);
+  });
+  it('should return a weeks worth steps for a given user', function() {
+    expect(activity.userDataForWeek(1, "2019/06/23", userRepo, 'numSteps')[0]).to.eql("2019/06/23: 9000");
+    expect(activity.userDataForWeek(1, "2019/06/23", userRepo, 'numSteps')[3]).to.eql("2019/06/20: 9303");
+  });
+  it('should return a weeks worth active minutes for a given user', function() {
+    expect(activity.userDataForWeek(1, "2019/06/23", userRepo, 'minutesActive')[0]).to.eql("2019/06/23: 8");
+    expect(activity.userDataForWeek(1, "2019/06/23", userRepo, 'minutesActive')[3]).to.eql("2019/06/20: 7");
+  });
+  it('should return a weeks worth stairs for a given user', function() {
+    expect(activity.userDataForWeek(1, "2019/06/23", userRepo, 'flightsOfStairs')[0]).to.eql("2019/06/23: 9");
+    expect(activity.userDataForWeek(1, "2019/06/23", userRepo, 'flightsOfStairs')[3]).to.eql("2019/06/20: 4");
+  });
 })
 
-describe('Friend Activity', function(){
+describe('Friend Activity', function() {
   let activityData;
   let activity;
   let user1;

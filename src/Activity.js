@@ -39,6 +39,14 @@ class Activity {
     let selectedDayData = userRepo.chooseDayDataForAllUsers(this.activityData, date);
     return parseFloat((selectedDayData.reduce((acc, elem) => acc += elem[relevantData], 0)/selectedDayData.length).toFixed(1));
   }
+  userDataForToday(id, date, userRepo, relevantData) {
+    let userData = userRepo.getDataFromUserID(id, this.activityData);
+    return userData.find(data => data.date === date)[relevantData];
+  }
+  userDataForWeek(id, date, userRepo, releventData) {
+    return userRepo.getWeekFromDate(date, id, this.activityData).map((data) => `${data.date}: ${data[releventData]}`);
+  }
+
   // findForrestGump() {
   // will complete if time allows
   // }
