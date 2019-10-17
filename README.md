@@ -1,10 +1,10 @@
 # FitLit Starter Kit  
 
-[x] Iteration 1  
-[x] Iteration 2  
-[x] Iteration 3  
-[x] Iteration 4  
-[x] Iteration 5  
+- [x] Iteration 1  
+- [x] Iteration 2  
+- [x] Iteration 3  
+- [x] Iteration 4  
+- [x] Iteration 5  
 
 ## Learning Goals:  
 
