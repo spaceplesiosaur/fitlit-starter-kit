@@ -60,7 +60,7 @@ function makeUsers(array) {
 }
 
 function pickUser() {
-  return Math.floor(Math.random() * 51);
+  return Math.floor(Math.random() * 50);
 }
 
 function getUserById(id, listRepo) {
@@ -127,7 +127,7 @@ function addFriendGameInfo(id, activityInfo, userStorage, dateString, laterDateS
 
   // activityInfo.showChallengeListAndWinner(user, dateString, userStorage);
   friendChallengeListHistory.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
-  bigWinner.insertAdjacentHTML('afterBegin', `THIS WEEK'S WINNER! ${activityInfo.showcaseWinner(user, dateString, userStorage)}`)
+  bigWinner.insertAdjacentHTML('afterBegin', `THIS WEEK'S WINNER! ${activityInfo.showcaseWinner(user, dateString, userStorage)} steps`)
 }
 
 function makeFriendChallengeHTML(id, activityInfo, userStorage, method) {
