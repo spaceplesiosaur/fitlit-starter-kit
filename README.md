@@ -8,8 +8,8 @@
 
 ## Learning Goals:  
 
-[x] Feeling more comfortable with prototype methods.  
-[x] Being able to understand each others code without it having to be explained.  
+- [x] Feeling more comfortable with prototype methods.  
+- [x] Being able to understand each others code without it having to be explained.  
 
 ## Wins:  
 
