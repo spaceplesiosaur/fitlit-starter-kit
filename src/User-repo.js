@@ -1,4 +1,3 @@
-
 class UserRepo {
   constructor(users) {
     this.users = users;
@@ -13,10 +12,9 @@ class UserRepo {
     var totalStepGoal = this.users.reduce((sumSoFar, data) => {
       return sumSoFar = sumSoFar + data.dailyStepGoal;
     }, 0);
-    return totalStepGoal/this.users.length;
+    return totalStepGoal / this.users.length;
   };
   makeSortedUserArray(id, dataSet) {
-    // let selectedID = dataSet.filter((data) => id === data.userID);
     let selectedID = this.getDataFromUserID(id, dataSet)
     let sortedByDate = selectedID.sort((a, b) => new Date(b.date) - new Date(a.date));
     return sortedByDate;
@@ -28,7 +26,7 @@ class UserRepo {
     return this.makeSortedUserArray(id, dataSet).slice(0, 7);
   };
   getWeekFromDate(date, id, dataSet) {
-    let dateIndex = this.makeSortedUserArray(id, dataSet).indexOf(this.makeSortedUserArray(id, dataSet).find((sortedItem)=>(sortedItem.date === date)));
+    let dateIndex = this.makeSortedUserArray(id, dataSet).indexOf(this.makeSortedUserArray(id, dataSet).find((sortedItem) => (sortedItem.date === date)));
     return this.makeSortedUserArray(id, dataSet).slice(dateIndex, dateIndex + 7);
   };
   chooseWeekDataForAllUsers(dataSet, date) {
@@ -54,13 +52,13 @@ class UserRepo {
   rankUserIDsbyRelevantDataValue(dataSet, date, relevantData, listFromMethod) {
     let sortedObjectKeys = this.isolateUsernameAndRelevantData(dataSet, date, relevantData, listFromMethod)
     return Object.keys(sortedObjectKeys).sort(function(b, a) {
-      return (sortedObjectKeys[a].reduce(function(sumSoFar, sleepQualityValue){
+      return (sortedObjectKeys[a].reduce(function(sumSoFar, sleepQualityValue) {
         sumSoFar += sleepQualityValue
         return sumSoFar;
-      }, 0)/sortedObjectKeys[a].length) - (sortedObjectKeys[b].reduce(function(sumSoFar, sleepQualityValue) {
+      }, 0) / sortedObjectKeys[a].length) - (sortedObjectKeys[b].reduce(function(sumSoFar, sleepQualityValue) {
         sumSoFar += sleepQualityValue
         return sumSoFar;
-      }, 0)/sortedObjectKeys[b].length)
+      }, 0) / sortedObjectKeys[b].length)
     });
   }
   combineRankedUserIDsAndAveragedData(dataSet, date, relevantData, listFromMethod) {
@@ -73,13 +71,11 @@ class UserRepo {
             sumSoFar += sleepQualityValue
             return sumSoFar;
           }, 0) / sortedObjectKeys[rankedUser].length
-        };
+      };
       return rankedUser;
     });
   }
-
 }
-
 
 if (typeof module !== 'undefined') {
   module.exports = UserRepo;

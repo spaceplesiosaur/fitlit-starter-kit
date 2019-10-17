@@ -1,4 +1,3 @@
-
 class Sleep {
   constructor(sleepData) {
     this.sleepData = sleepData;
@@ -7,13 +6,13 @@ class Sleep {
     let perDaySleep = this.sleepData.filter((data) => id === data.userID);
     return perDaySleep.reduce((sumSoFar, data) => {
       return sumSoFar += data.hoursSlept;
-    }, 0)/perDaySleep.length;
+    }, 0) / perDaySleep.length;
   }
   calculateAverageSleepQuality(id) {
     let perDaySleepQuality = this.sleepData.filter((data) => id === data.userID);
     return perDaySleepQuality.reduce((sumSoFar, data) => {
       return sumSoFar += data.sleepQuality;
-    }, 0)/perDaySleepQuality.length;
+    }, 0) / perDaySleepQuality.length;
   }
   calculateDailySleep(id, date) {
     let findSleepByDate = this.sleepData.find((data) => id === data.userID && date === data.date);
@@ -34,18 +33,18 @@ class Sleep {
       sumSoFar += dataItem.sleepQuality;
       return sumSoFar;
     }, 0)
-    return totalSleepQuality/sleepData.length
+    return totalSleepQuality / sleepData.length
   }
   determineBestSleepers(date, userRepo) {
     let timeline = userRepo.chooseWeekDataForAllUsers(this.sleepData, date);
     let userSleepObject = userRepo.isolateUsernameAndRelevantData(this.sleepData, date, 'sleepQuality', timeline);
 
     return Object.keys(userSleepObject).filter(function(key) {
-      return (userSleepObject[key].reduce(function(sumSoFar, sleepQualityValue){
+      return (userSleepObject[key].reduce(function(sumSoFar, sleepQualityValue) {
         sumSoFar += sleepQualityValue
         return sumSoFar;
-      }, 0)/userSleepObject[key].length) > 3
-    }).map(function(sleeper){
+      }, 0) / userSleepObject[key].length) > 3
+    }).map(function(sleeper) {
       return userRepo.getDataFromID(parseInt(sleeper)).name;
     })
   }
@@ -62,7 +61,7 @@ class Sleep {
     return this.getWinnerNamesFromList(sleepRankWithData, userRepo);
   }
   getWinnerNamesFromList(sortedArray, userRepo) {
-    let bestSleepers = sortedArray.filter(function(element){
+    let bestSleepers = sortedArray.filter(function(element) {
       return element[Object.keys(element)] === Object.values(sortedArray[0])[0]
     });
 
