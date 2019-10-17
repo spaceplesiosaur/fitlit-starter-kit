@@ -77,11 +77,7 @@ class UserRepo {
       return rankedUser;
     });
   }
-  // getFriendsWeeklyStepCount(userDataSet, activityDataSet, id) {
-  //   let userInfo = this.getDataFromID(id);
-  //   let friendsList = userInfo.friends;
-  //
-  // }
+
 }
 
 

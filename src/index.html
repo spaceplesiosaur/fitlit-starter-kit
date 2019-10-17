@@ -61,6 +61,7 @@
       </section>
       <section class="main-column-activity">
         <section class="infoContainer-cardContainer-card-horizontal">
+          <section class="horizontalCard-activity-container">
           <div class="card-today-activity">
             <p id="activtyToday">PLACEHOLDER</p>
           </div>
@@ -68,9 +69,41 @@
             <p id="activtyToday2">PLACEHOLDER</p>
           </div>
         </section>
-        <section class="infoContainer-cardContainer-card-vertical">
+        <section class="horizontalCard-activity-container">
+        <div class="card-today-activity">
+          <p id="activtyToday">PLACEHOLDER</p>
+        </div>
+        <div class="card-today-activity">
+          <p id="activtyToday2">PLACEHOLDER</p>
+        </div>
+      </section>
+      <section class="horizontalCard-activity-container">
+      <div class="card-today-activity">
+        <p id="activtyToday">PLACEHOLDER</p>
+      </div>
+      <div class="card-today-activity">
+        <p id="activtyToday2">PLACEHOLDER</p>
+      </div>
+    </section>
+  </section>
+        <section class="infoContainer-cardContainer-card-horizontal">
+        <section class="horizontalCard-activity-container">
           <div class="card-history-activity">
-            <p class="thisWeek">Acitivity: this week</p>
+            <p class="thisWeek">Activity: this week</p>
+            <ul class="card-vertical-list" id="activityThisWeek">
+              <!-- Activity week list goes here -->
+            </ul>
+          </div>
+          <div class="card-history-activity">
+            <p class="thisWeek">Activity: this week</p>
+            <ul class="card-vertical-list" id="activityEarlierWeek">
+              <!-- Activity week list goes here -->
+            </ul>
+          </div>
+        </section>
+        <section class="horizontalCard-activity-container">
+          <div class="card-history-activity">
+            <p class="thisWeek">Activity: this week</p>
             <ul class="card-vertical-list" id="activityThisWeek">
               <!-- Activity week list goes here -->
             </ul>
@@ -81,6 +114,7 @@
               <!-- Activity week list goes here -->
             </ul>
           </div>
+        </section>
         </section>
       </section>
       <section class="main-column-sleep">
@@ -112,11 +146,10 @@
       </section>
     </section>
     <section class="main-sidebar-body">
-      <section class="main-sidebar-body">
       <section class="body-sidebar-sidebarContainer">
         <h2 class="sidebar-header-name" id="sidebarName">FRIENDLY STEP CHALLENGE!</h2>
         <div class="sidebar-header-line"></div>
-        <img src="./images/person walking on path.jpg"class="sidebar-header-userImage"></img>
+        <img src="./images/person walking on path.jpg" class="sidebar-header-userImage"></img>
         <div class="sidebar-header-line"></div>
         <p class="sidebar-header-userInfo" id="bigWinner"></p>
         <div class="sidebar-header-line"></div>
@@ -135,7 +168,6 @@
           </section>
         </section>
       </section>
-    </section>
   </section>
   </section>
     <script type="text/javascript" src="Activity.js"></script>

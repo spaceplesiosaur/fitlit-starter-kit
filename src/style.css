@@ -5,7 +5,7 @@
 
 body {
   font-family: 'Open Sans';
-  margin: 0px 50px 0px 50px;
+  margin: 0;
   background-color: #4d4e4f;
   height: auto;
 }
@@ -16,21 +16,24 @@ h1 {
 }
 
 .main {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: row;
+  height: 1500px;
 }
 
 .main-sidebar-body {
   display: flex;
   flex-direction: row;
+  width: 25%;
+  height: 100%;
 }
 
 .body-sidebar-sidebarContainer {
-  width: 100%;
+  /* width: 100%; */
   background-color: #9A9DAB;
   border: 1px solid black;
-  height: 1000px;
+  /* height: 1500px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,7 +64,7 @@ h1 {
   border-color: black;
   border-style: solid;
   border-width: 1px;
-  height: 23%;
+  height: 15%;
   width: 80%;
   margin: 2px;
 }
@@ -78,7 +81,7 @@ h1 {
 .body-main-infoContainter {
   width: 100%;
   border: 1px solid black;
-  height: 1000px;
+  /* height: 1500px; */
   /* display: inline-block; */
   margin: 0 0 1em;
   /* flex-wrap: wrap; */
@@ -92,41 +95,52 @@ h1 {
 .main-column-hydration {
   display: flex;
   flex-direction: row;
-  overflow: scroll;
+  /* overflow: scroll; */
+  height: 25%
 }
 
 .main-column-activity {
   display: flex;
   flex-direction: row;
-  overflow: scroll;
+  /* overflow: scroll; */
+  height: 50%
 }
 
 .main-column-sleep {
   display: flex;
   flex-direction: row;
-  overflow: scroll;
+  /* overflow: scroll; */
+  height: 35%
 }
 
 .infoContainer-cardContainer-card-horizontal {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   background-color: white;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 3%;
+  /* padding: 3%; */
+}
+
+.horizontalCard-activity-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .infoContainer-cardContainer-card-vertical {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   background-color: white;
   border: 1px solid black;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin: 3%;
+  /* padding: 3%; */
 }
 
 .card-today-hydration {
@@ -159,12 +173,12 @@ h1 {
   background-color: #DFE166;
   height: auto;
   font-size: 1.5em;
-  margin: .5em;
+  margin: .3em;
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 80%;
+  width: 40%;
 }
 
 .card-history-hydration {
