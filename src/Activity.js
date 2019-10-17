@@ -1,26 +1,19 @@
-
-
 class Activity {
   constructor(activityData) {
     this.activityData = activityData
   }
   getMilesFromStepsByDate(id, date, userRepo) {
     let userStepsByDate = this.activityData.find(data => id === data.userID && date === data.date);
-    return parseFloat(((userStepsByDate.numSteps * userRepo.strideLength)/5280).toFixed(1));
+    return parseFloat(((userStepsByDate.numSteps * userRepo.strideLength) / 5280).toFixed(1));
   }
   getActiveMinutesByDate(id, date) {
     let userActivityByDate = this.activityData.find(data => id === data.userID && date === data.date);
     return userActivityByDate.minutesActive;
   }
   calculateActiveAverageForWeek(id, date, userRepo) {
-    // let weekFromDate = userRepo.getWeekFromDate(date, id, this.activityData);
-    // let totalActiveMinutes = weekFromDate.reduce((acc, elem) => {
-    //   return acc += elem.minutesActive;
-    // }, 0)/7;
-    // return parseFloat((totalActiveMinutes).toFixed(1));
     return parseFloat((userRepo.getWeekFromDate(date, id, this.activityData).reduce((acc, elem) => {
       return acc += elem.minutesActive;
-    }, 0)/7).toFixed(1));
+    }, 0) / 7).toFixed(1));
   }
   accomplishStepGoal(id, date, userRepo) {
     let userStepsByDate = this.activityData.find(data => id === data.userID && date === data.date);
@@ -37,7 +30,7 @@ class Activity {
   }
   getAllUserAverageForDay(date, userRepo, relevantData) {
     let selectedDayData = userRepo.chooseDayDataForAllUsers(this.activityData, date);
-    return parseFloat((selectedDayData.reduce((acc, elem) => acc += elem[relevantData], 0)/selectedDayData.length).toFixed(1));
+    return parseFloat((selectedDayData.reduce((acc, elem) => acc += elem[relevantData], 0) / selectedDayData.length).toFixed(1));
   }
   userDataForToday(id, date, userRepo, relevantData) {
     let userData = userRepo.getDataFromUserID(id, this.activityData);
@@ -47,19 +40,15 @@ class Activity {
     return userRepo.getWeekFromDate(date, id, this.activityData).map((data) => `${data.date}: ${data[releventData]}`);
   }
 
-  // findForrestGump() {
-  // will complete if time allows
-  // }
-
-// Frands
+  // Friends
 
   getFriendsActivity(user, userRepo) {
     let data = this.activityData;
-    let userDatalist = user.friends.map(function(friend){
+    let userDatalist = user.friends.map(function(friend) {
       return userRepo.getDataFromUserID(friend, data)
     });
     return userDatalist.reduce(function(arraySoFar, listItem) {
-       return arraySoFar.concat(listItem);
+      return arraySoFar.concat(listItem);
     }, []);
   }
   getFriendsAverageStepsForWeek(user, date, userRepo) {
@@ -78,22 +67,29 @@ class Activity {
   }
   showcaseWinner(user, date, userRepo) {
     let namedList = this.showChallengeListAndWinner(user, date, userRepo);
-    return this.showChallengeListAndWinner(user, date, userRepo).shift()
+    let winner = this.showChallengeListAndWinner(user, date, userRepo).shift();
+    return winner;
   }
-  getStepStreak(userRepo, id) {
+  getStreak(userRepo, id, relevantData) {
     let data = this.activityData;
     let sortedUserArray = (userRepo.makeSortedUserArray(id, data)).reverse();
-    let streaks =  sortedUserArray.filter(function(element, index) {
+    let streaks = sortedUserArray.filter(function(element, index) {
       if (index >= 2) {
-      return (sortedUserArray[index-2].numSteps < sortedUserArray[index-1].numSteps && sortedUserArray[index-1].numSteps < sortedUserArray[index].numSteps)
-      // return element.numSteps === sortedUserArray[index].numSteps
+        return (sortedUserArray[index - 2][relevantData] < sortedUserArray[index - 1][relevantData] && sortedUserArray[index - 1][relevantData] < sortedUserArray[index][relevantData])
       }
     });
     return streaks.map(function(streak) {
       return streak.date;
     })
   }
+  getWinnerId(user, date, userRepo) {
+    let rankedList = this.getFriendsAverageStepsForWeek(user, date, userRepo);
+    let keysList = rankedList.map(listItem => Object.keys(listItem));
+    return parseInt(keysList[0].join(''))
+  }
 }
+
+
 
 if (typeof module !== 'undefined') {
   module.exports = Activity;

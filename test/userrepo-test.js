@@ -11,8 +11,9 @@ describe('User Repo', function() {
   let user;
   let userRepo;
 
-  beforeEach(function(){
-    user1 = new User({id: 1,
+  beforeEach(function() {
+    user1 = new User({
+      id: 1,
       name: "Alex Roth",
       address: "1234 Turing Street, Denver CO 80301-1697",
       email: "alex.roth1@hotmail.com",
@@ -20,7 +21,8 @@ describe('User Repo', function() {
       dailyStepGoal: 10000,
       friends: [2, 3, 4]
     });
-    user2 = new User({id: 2,
+    user2 = new User({
+      id: 2,
       name: "Allie McCarthy",
       address: "1235 Turing Street, Denver CO 80301-1697",
       email: "allie.mcc1@hotmail.com",
@@ -44,7 +46,8 @@ describe('User Repo', function() {
   });
 
   it('should have a parameter to take in user data', function() {
-    const user1 = new User({id: 1,
+    const user1 = new User({
+      id: 1,
       name: "Alex Roth",
       address: "1234 Turing Street, Denver CO 80301-1697",
       email: "alex.roth1@hotmail.com",
@@ -55,7 +58,7 @@ describe('User Repo', function() {
     const users = [user1];
     const userRepo = new UserRepo(users);
 
-    console.log('here: ',userRepo.users[0]);
+    console.log('here: ', userRepo.users[0]);
 
     expect(userRepo.users[0].id).to.equal(1);
   });
@@ -88,7 +91,8 @@ describe('User Repo', function() {
     let sleepData;
 
     beforeEach(function() {
-      user1 = new User({id: 1,
+      user1 = new User({
+        id: 1,
         name: "Alex Roth",
         address: "1234 Turing Street, Denver CO 80301-1697",
         email: "alex.roth1@hotmail.com",
@@ -96,7 +100,8 @@ describe('User Repo', function() {
         dailyStepGoal: 10000,
         friends: [2, 3, 4]
       });
-      user2 = new User({id: 2,
+      user2 = new User({
+        id: 2,
         name: "Allie McCarthy",
         address: "1235 Turing Street, Denver CO 80301-1697",
         email: "allie.mcc1@hotmail.com",
@@ -136,100 +141,101 @@ describe('User Repo', function() {
       userRepo = new UserRepo(users);
 
       hydrationData = [{
-        "userID": 1,
-        "date": "2019/06/15",
-        "numOunces": 37
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/15",
-        "numOunces": 38
-      },
-      {
-        "userID": 3,
-        "date": "2019/05/09",
-        "numOunces": 1
-      },
-      {
-        "userID": 4,
-        "date": "2019/04/15",
-        "numOunces": 36
-      },
-      {
-        "userID": 2,
-        "date": "2018/10/23",
-        "numOunces": 34
-      },
-      {
-        "userID": 1,
-        "date": "2018/06/16",
-        "numOunces": 39
-      },
-      {
-        "userID": 3,
-        "date": "2018/03/30",
-        "numOunces": 2
-      },
-      {
-        "userID": 4,
-        "date": "2018/02/01",
-        "numOunces": 28
-      },
-      {
-        "userID": 1,
-        "date": "2016/08/22",
-        "numOunces": 30
-      },
-      {
-        "userID": 3,
-        "date": "2016/05/14",
-        "numOunces": 3
-      },
-      {
-        "userID": 2,
-        "date": "2016/04/27",
-        "numOunces": 40
-      },
-      {
-        "userID": 4,
-        "date": "2019/03/15",
-        "numOunces": 35
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/20",
-        "numOunces": 40
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/19",
-        "numOunces": 30
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/18",
-        "numOunces": 40
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/17",
-        "numOunces": 40
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/16",
-        "numOunces": 30
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/15",
-        "numOunces": 30
-      },
-      {
-        "userID": 3,
-        "date": "2019/09/17",
-        "numOunces": 30
-      }]
+          "userID": 1,
+          "date": "2019/06/15",
+          "numOunces": 37
+        },
+        {
+          "userID": 2,
+          "date": "2019/06/15",
+          "numOunces": 38
+        },
+        {
+          "userID": 3,
+          "date": "2019/05/09",
+          "numOunces": 1
+        },
+        {
+          "userID": 4,
+          "date": "2019/04/15",
+          "numOunces": 36
+        },
+        {
+          "userID": 2,
+          "date": "2018/10/23",
+          "numOunces": 34
+        },
+        {
+          "userID": 1,
+          "date": "2018/06/16",
+          "numOunces": 39
+        },
+        {
+          "userID": 3,
+          "date": "2018/03/30",
+          "numOunces": 2
+        },
+        {
+          "userID": 4,
+          "date": "2018/02/01",
+          "numOunces": 28
+        },
+        {
+          "userID": 1,
+          "date": "2016/08/22",
+          "numOunces": 30
+        },
+        {
+          "userID": 3,
+          "date": "2016/05/14",
+          "numOunces": 3
+        },
+        {
+          "userID": 2,
+          "date": "2016/04/27",
+          "numOunces": 40
+        },
+        {
+          "userID": 4,
+          "date": "2019/03/15",
+          "numOunces": 35
+        },
+        {
+          "userID": 4,
+          "date": "2019/09/20",
+          "numOunces": 40
+        },
+        {
+          "userID": 4,
+          "date": "2019/09/19",
+          "numOunces": 30
+        },
+        {
+          "userID": 4,
+          "date": "2019/09/18",
+          "numOunces": 40
+        },
+        {
+          "userID": 4,
+          "date": "2019/09/17",
+          "numOunces": 40
+        },
+        {
+          "userID": 4,
+          "date": "2019/09/16",
+          "numOunces": 30
+        },
+        {
+          "userID": 4,
+          "date": "2019/09/15",
+          "numOunces": 30
+        },
+        {
+          "userID": 3,
+          "date": "2019/09/17",
+          "numOunces": 30
+        }
+      ]
 
       sleepData = [{
           "userID": 1,
@@ -446,26 +452,28 @@ describe('User Repo', function() {
           "date": "2019/06/15",
           "hoursSlept": 9,
           "sleepQuality": 4
-        }];
+        }
+      ];
     });
-    it('should get a users data from its userID in any data set', function(){
+    it('should get a users data from its userID in any data set', function() {
       expect(userRepo.getDataFromUserID(1, hydrationData)).to.eql([{
-        "userID": 1,
-        "date": "2019/06/15",
-        "numOunces": 37
-      },
-      {
-        "userID": 1,
-        "date": "2018/06/16",
-        "numOunces": 39
-      },
-      {
-        "userID": 1,
-        "date": "2016/08/22",
-        "numOunces": 30
-      }]);
+          "userID": 1,
+          "date": "2019/06/15",
+          "numOunces": 37
+        },
+        {
+          "userID": 1,
+          "date": "2018/06/16",
+          "numOunces": 39
+        },
+        {
+          "userID": 1,
+          "date": "2016/08/22",
+          "numOunces": 30
+        }
+      ]);
     });
-    it('should get a users most recent date using the app', function(){
+    it('should get a users most recent date using the app', function() {
       expect(userRepo.getToday(4, hydrationData)).to.eql("2019/09/20");
     });
     it('should sort data by date and extract its week', function() {
@@ -490,16 +498,21 @@ describe('User Repo', function() {
     });
     it('should isolate a user ID and its values of any relevant data', function() {
       expect(userRepo.isolateUsernameAndRelevantData(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))).to.eql({
-        '2': [ 3.5, 4, 3.3, 3.6, 3.6, 4, 3.1 ],
-        '4': [ 3.5, 4, 1.3, 1.6, 1.6, 1, 3.1 ],
-        '5': [ 4, 4, 4, 4, 4, 4, 4 ] })
-      expect(userRepo.isolateUsernameAndRelevantData(hydrationData, "2019/05/09", 'numOunces', userRepo.chooseWeekDataForAllUsers(hydrationData, "2019/05/09"))).to.eql({'3': [1]})
+        '2': [3.5, 4, 3.3, 3.6, 3.6, 4, 3.1],
+        '4': [3.5, 4, 1.3, 1.6, 1.6, 1, 3.1],
+        '5': [4, 4, 4, 4, 4, 4, 4]
+      })
+      expect(userRepo.isolateUsernameAndRelevantData(hydrationData, "2019/05/09", 'numOunces', userRepo.chooseWeekDataForAllUsers(hydrationData, "2019/05/09"))).to.eql({
+        '3': [1]
+      })
     });
     it('should rank user ids according to relevant data value averages', function() {
       expect(userRepo.rankUserIDsbyRelevantDataValue(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))).to.eql(['5', '2', '4'])
     });
     it('should show list in order of userID and average of relevant value', function() {
-      expect(userRepo.combineRankedUserIDsAndAveragedData(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))[0]).to.eql({'5': 4})
+      expect(userRepo.combineRankedUserIDsAndAveragedData(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))[0]).to.eql({
+        '5': 4
+      })
     });
 
   });

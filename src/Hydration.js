@@ -6,7 +6,7 @@ class Hydration {
     let perDayUserHydration = this.hydrationData.filter((data) => id === data.userID);
     return perDayUserHydration.reduce((sumSoFar, data) => {
       return sumSoFar += data.numOunces;
-    }, 0)/perDayUserHydration.length;
+    }, 0) / perDayUserHydration.length;
   }
   calculateDailyOunces(id, date) {
     let findOuncesByDate = this.hydrationData.find((data) => id === data.userID && date === data.date);
