@@ -34,6 +34,7 @@ var userStairsThisWeek = document.getElementById('userStairsThisWeek');
 var userMinutesThisWeek = document.getElementById('userMinutesThisWeek');
 var bestUserSteps = document.getElementById('bestUserSteps');
 var streakList = document.getElementById('streakList');
+var streakListMinutes = document.getElementById('streakListMinutes')
 
 function startApp() {
   let userList = [];
@@ -46,12 +47,15 @@ function startApp() {
   let userNow = getUserById(userNowId, userRepo);
   let today = makeToday(userRepo, userNowId, hydrationData);
   let randomHistory = makeRandomDate(userRepo, userNowId, hydrationData);
+  let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
+  console.log('WINNER', winnerNow);
+  console.log('USER', userNowId);
   historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
   addInfoToSidebar(userNow, userRepo);
   addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
   addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
-  addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory);
-  addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
+  addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow);
+  addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow, winnerNow);
 }
 
 function makeUsers(array) {
@@ -83,6 +87,10 @@ function addInfoToSidebar(user, userStorage) {
 
 function makeFriendHTML(user, userStorage) {
   return user.getFriendsNames(userStorage).map(friendName => `<li class='historical-list-listItem'>${friendName}</li>`).join('');
+}
+
+function makeWinnerID(activityInfo, user, dateString, userStorage){
+  return activityInfo.getWinnerId(user, dateString, userStorage)
 }
 
 function makeToday(userStorage, id, dataSet) {
@@ -123,7 +131,7 @@ function makeSleepQualityHTML(id, sleepInfo, userStorage, method) {
   return method.map(sleepQualityData => `<li class="historical-list-listItem">On ${sleepQualityData}/5 quality of sleep</li>`).join('');
 }
 
-function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString) {
+function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {
   userStairsToday.insertAdjacentHTML("afterBegin", `<p>Stair Count:</p><p>You</><p><span class="number">${activityInfo.userDataForToday(id, dateString, userStorage, 'flightsOfStairs')}</span></p>`)
   avgStairsToday.insertAdjacentHTML("afterBegin", `<p>Stair Count: </p><p>All Users</p><p><span class="number">${activityInfo.getAllUserAverageForDay(dateString, userStorage, 'flightsOfStairs')}</span></p>`)
   userStepsToday.insertAdjacentHTML("afterBegin", `<p>Step Count:</p><p>You</p><p><span class="number">${activityInfo.userDataForToday(id, dateString, userStorage, 'numSteps')}</span></p>`)
@@ -133,7 +141,7 @@ function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateStr
   userStepsThisWeek.insertAdjacentHTML("afterBegin", makeStepsHTML(id, activityInfo, userStorage, activityInfo.userDataForWeek(id, dateString, userStorage, "numSteps")));
   userStairsThisWeek.insertAdjacentHTML("afterBegin", makeStairsHTML(id, activityInfo, userStorage, activityInfo.userDataForWeek(id, dateString, userStorage, "flightsOfStairs")));
   userMinutesThisWeek.insertAdjacentHTML("afterBegin", makeMinutesHTML(id, activityInfo, userStorage, activityInfo.userDataForWeek(id, dateString, userStorage, "minutesActive")));
-  bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(id, activityInfo, userStorage, activityInfo.userDataForWeek(id, dateString, userStorage, "numSteps")));
+  bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(user, activityInfo, userStorage, activityInfo.userDataForWeek(winnerId, dateString, userStorage, "numSteps")));
 }
 
 function makeStepsHTML(id, activityInfo, userStorage, method) {
@@ -150,7 +158,8 @@ function makeMinutesHTML(id, activityInfo, userStorage, method) {
 
 function addFriendGameInfo(id, activityInfo, userStorage, dateString, laterDateString, user) {
   friendChallengeListToday.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
-  streakList.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStepStreak(userStorage, id)));
+  streakList.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'numSteps')));
+  streakListMinutes.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'minutesActive')));
   friendChallengeListHistory.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
   bigWinner.insertAdjacentHTML('afterBegin', `THIS WEEK'S WINNER! ${activityInfo.showcaseWinner(user, dateString, userStorage)} steps`)
 }

@@ -40,11 +40,7 @@ class Activity {
     return userRepo.getWeekFromDate(date, id, this.activityData).map((data) => `${data.date}: ${data[releventData]}`);
   }
 
-  // findForrestGump() {
-  // will complete if time allows
-  // }
-
-  // Frands
+  // Friends
 
   getFriendsActivity(user, userRepo) {
     let data = this.activityData;
@@ -85,19 +81,15 @@ class Activity {
       return streak.date;
     })
   }
-  // getStepStreak(userRepo, id) {
-  //   let data = this.activityData;
-  //   let sortedUserArray = (userRepo.makeSortedUserArray(id, data)).reverse();
-  //   let streaks = sortedUserArray.filter(function(element, index) {
-  //     if (index >= 2) {
-  //       return (sortedUserArray[index - 2].numSteps < sortedUserArray[index - 1].numSteps && sortedUserArray[index - 1].numSteps < sortedUserArray[index].numSteps)
-  //     }
-  //   });
-  //   return streaks.map(function(streak) {
-  //     return streak.date;
-  //   })
-  // }
+  getWinnerId(user, date, userRepo) {
+    let rankedList = this.getFriendsAverageStepsForWeek(user, date, userRepo);
+    console.log('RAAAAAANL', rankedList)
+    let keysList = rankedList.map(listItem => Object.keys(listItem));
+    return parseInt(keysList[0].shift())
+  }
 }
+
+
 
 if (typeof module !== 'undefined') {
   module.exports = Activity;
