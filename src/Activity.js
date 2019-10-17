@@ -67,7 +67,8 @@ class Activity {
   }
   showcaseWinner(user, date, userRepo) {
     let namedList = this.showChallengeListAndWinner(user, date, userRepo);
-    return this.showChallengeListAndWinner(user, date, userRepo).shift()
+    let winner = this.showChallengeListAndWinner(user, date, userRepo).shift();
+    return winner;
   }
   getStreak(userRepo, id, relevantData) {
     let data = this.activityData;
@@ -83,9 +84,8 @@ class Activity {
   }
   getWinnerId(user, date, userRepo) {
     let rankedList = this.getFriendsAverageStepsForWeek(user, date, userRepo);
-    console.log('RAAAAAANL', rankedList)
     let keysList = rankedList.map(listItem => Object.keys(listItem));
-    return parseInt(keysList[0].shift())
+    return parseInt(keysList[0].join(''))
   }
 }
 
